@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Artimo\n감정일기</string>
+    <string name="copyright">Artimo 감정을 예술로, 공간을 작품으로</string>
+    <string name="emoji_default">오늘 하루는 어땠나요?</string>
+    <string name="emoji_write">힘든 하루였군요...</string>
+    <string name="date_format_main">%d년 %02d월</string>
+    <string name="date_format_emoji">%d년 %02d월 %02d일</string>
+    <string name="writebtn"><u>기록하기</u></string>
+    <string name="tomainbtn"><u>메인으로 돌아가기</u></string>
+</resources>

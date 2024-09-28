@@ -1,0 +1,19 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardElevation="0dp"
+    tools:ignore="SpeakableTextPresentCheck">
+
+
+<ImageView
+        android:id="@+id/imageView"
+        android:layout_width="55sp"
+        android:layout_height="55sp" />
+
+</androidx.cardview.widget.CardView>
