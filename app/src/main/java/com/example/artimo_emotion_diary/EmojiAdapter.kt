@@ -41,10 +41,43 @@ class EmojiAdapter(
             holder.imageView.setImageDrawable(drawable)
             inputStream.close()
 
+            // 이모지 별 감정 타이틀 매핑
+            val imageToTitleMap = mapOf(
+                "a_Happy.png" to "행복 가득한 하루였어요.",
+                "b_Happy.png" to "행복 가득한 하루였어요.",
+                "c_Love.png" to "사랑 가득한 하루를 보냈어요.",
+                "d_Love.png" to "사랑에 빠진 듯한 하루였어요.",
+                "e_Sad.png" to "조금 속상한 하루였어요.",
+                "f_Sick.png" to "몸이나 마음이 조금 아팠어요.",
+                "g_Sorrow.png" to "슬픔이 있었던 하루였어요.",
+                "h_Depressed.png" to "우울한 하루를 보냈어요.",
+                "i_Upset.png" to "속상한 일이 있었어요.",
+                "j_Tears.png" to "눈물이 흐르는 일이 있었어요.",
+                "k_Laugh.png" to "웃음 가득한 하루를 보냈어요.",
+                "l_Surprise.png" to "깜짝 놀랄 만한 일이 있었어요.",
+                "m_SadLaugh.png" to "웃픈 하루를 보냈어요.",
+                "n_Wonderful.png" to "멋진 하루를 보냈어요.",
+                "o_Joyful.png" to "유쾌한 하루를 보냈어요.",
+                "p_Calm.png" to "마음이 편안해지는 하루였어요.",
+                "q_Fun.png" to "재미있는 하루를 보냈군요?",
+                "r_Unexpected.png" to "예상치 못한 일이 생겼어요.",
+                "s_Upset.png" to "속상한 일이 있었어요.",
+                "t_Unhappy.png" to "불만이 쌓였던 하루였군요.",
+                "u_Embarrassed.png" to "당황스러운 하루였어요.",
+                "v_Angry.png" to "화가 났던 날이었어요.",
+                "w_Hard.png" to "정말 힘든 하루를 보냈군요.",
+                "x_Shocking.png" to "충격적인 일이 있었어요.",
+                "y_HardDay.png" to "오늘 하루 정말 힘들었어요.",
+                "z_Angel.png" to "천사같은 하루를 보냈어요.",
+                "z2_Demon.png" to "악마같은 하루를 보냈어요."
+            )
+
             // 이미지를 클릭할 때의 동작 설정
             holder.imageView.setOnClickListener {
+                val title = imageToTitleMap[imageFileName] ?: "기본 제목"
                 val intent = Intent(context, WriteActivity::class.java).apply {
                     putExtra("emoji", imageFileName)
+                    putExtra("title", title)
                     putExtra("YEAR", year)
                     putExtra("MONTH", month)
                     putExtra("DAY", day)

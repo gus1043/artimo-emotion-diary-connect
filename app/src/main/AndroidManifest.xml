@@ -2,15 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Devices running Android 12L (API level 32) or lower  -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
-    <!-- Devices running Android 13 (API level 33) or higher -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:requestLegacyExternalStorage="true"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/logo"
@@ -18,7 +17,10 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Artimo_emotion_diary"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:networkSecurityConfig="@xml/network_security_config">
+
+        <service android:name=".VideoProcessingService" />
 
         <activity
             android:name=".MainActivity"
