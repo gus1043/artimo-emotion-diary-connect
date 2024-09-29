@@ -164,7 +164,7 @@ class WriteActivity : AppCompatActivity() {
         val formattedDateTime = currentDateTime.format(formatter)
 
         // _ 뒤의 글자만 추출
-        val emotionType = emoji.substringAfter("_")
+        val emotionType = emoji.substringAfter("_").substringBefore(".png")
 
         val diaryObject = CreateDiary(
             title = title,

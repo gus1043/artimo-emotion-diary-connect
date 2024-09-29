@@ -85,8 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:background="@drawable/imagebtn"/>
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/todaycaption"
