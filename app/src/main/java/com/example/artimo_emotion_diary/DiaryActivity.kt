@@ -111,7 +111,7 @@ class DiaryActivity : AppCompatActivity() {
                     // S3와 같은 HTTP URL로부터 이미지 로드 (Glide 사용)
                     Glide.with(this)
                         .load(imageUriString)
-                        .placeholder(R.drawable.logo) // 로딩 중 기본 이미지 설정
+                        .placeholder(R.drawable.blank)
                         .error(R.drawable.logo) // 로딩 실패 시 기본 이미지 설정
                         .into(todayimage)
                 } else {
