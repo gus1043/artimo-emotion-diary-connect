@@ -13,6 +13,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -74,6 +75,9 @@ class WriteActivity : AppCompatActivity() {
                 // 이미지 회전 처리를 적용하여 ImageView에 설정
                 val rotatedBitmap = handleImageRotation(imageUri!!)
                 todayimage.setImageBitmap(rotatedBitmap)
+
+                //이미지 뜨면 클릭해서 사진 추가하라는 텍스트는 사라짐
+                findViewById<TextView>(R.id.addPhotoText).visibility = View.GONE
             }
         }
 
