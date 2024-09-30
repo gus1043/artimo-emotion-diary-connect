@@ -102,6 +102,7 @@ class CalendarFragment : Fragment() {
                                 Log.d("CalendarFragment", "Diary: ${diaryData.diary}")
                             }
                             startActivity(intent)
+                            requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         } else {
                             // 다이어리 데이터가 없으면 EmojiSelectActivity로 이동
                             val intent = Intent(context, EmojiSelectActivity::class.java).apply {
@@ -110,6 +111,7 @@ class CalendarFragment : Fragment() {
                                 putExtra("DAY", date.date)
                             }
                             startActivity(intent)
+                            requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         }
                     })
                 }
