@@ -3,8 +3,11 @@ package com.example.artimo_emotion_diary
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.graphics.drawable.Drawable
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -68,10 +71,9 @@ class WriteActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
                 imageUri = it
-                todayimage.setImageURI(imageUri)
-
-                // 이미지 파일을 비트맵으로 열기
-                openImage(imageUri!!)
+                // 이미지 회전 처리를 적용하여 ImageView에 설정
+                val rotatedBitmap = handleImageRotation(imageUri!!)
+                todayimage.setImageBitmap(rotatedBitmap)
             }
         }
 
@@ -268,15 +270,40 @@ class WriteActivity : AppCompatActivity() {
         selectImageLauncher.launch("image/*")
     }
 
-    private fun openImage(uri: Uri) {
+    // 이미지가 회전되어 보이는 경우기 EXIF 떄문인데 그거 해결 코드
+    private fun handleImageRotation(uri: Uri): Bitmap? {
         try {
-            val inputStream: InputStream? = contentResolver.openInputStream(uri)
+            val inputStream = contentResolver.openInputStream(uri)
             val bitmap = BitmapFactory.decodeStream(inputStream)
-            todayimage.setImageBitmap(bitmap) // 이미지뷰에 설정
-            inputStream?.close()
+
+            // EXIF 데이터 가져오기
+            val exif = contentResolver.openInputStream(uri)?.let { ExifInterface(it) }
+            val orientation = exif?.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+
+            val rotationDegrees = when (orientation) {
+                ExifInterface.ORIENTATION_ROTATE_90 -> 90
+                ExifInterface.ORIENTATION_ROTATE_180 -> 180
+                ExifInterface.ORIENTATION_ROTATE_270 -> 270
+                else -> 0
+            }
+
+            // 이미지 회전
+            return if (rotationDegrees != 0) {
+                rotateBitmap(bitmap, rotationDegrees)
+            } else {
+                bitmap
+            }
         } catch (e: Exception) {
-            Log.e("WriteActivity", "Error opening image: ${e.message}")
+            e.printStackTrace()
         }
+        return null
+    }
+
+    // 비트맵을 회전시키는 함수
+    private fun rotateBitmap(bitmap: Bitmap, degrees: Int): Bitmap {
+        val matrix = Matrix()
+        matrix.postRotate(degrees.toFloat())
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
     fun getFilePathFromUri(context: Context, uri: Uri): String? {
