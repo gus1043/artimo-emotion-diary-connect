@@ -36,7 +36,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.io.InputStream
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.concurrent.TimeUnit
 
@@ -116,7 +118,7 @@ class WriteActivity : AppCompatActivity() {
             val captionText = caption.text.toString()
 
             // 서버에 다이어리 전송
-            sendFormDataToServer(diaryText, emoji, imageUri, titleText, captionText)
+            sendFormDataToServer(year, month, day,  diaryText, emoji, imageUri, titleText, captionText)
 
             // db 저장
             lifecycleScope.launch {
@@ -158,10 +160,19 @@ class WriteActivity : AppCompatActivity() {
     }
 
     // 서버 전송
-    fun sendFormDataToServer(diaryText: String, emoji: String, imageUri: Uri?, title: String, captionText: String) {
-        val currentDateTime = LocalDateTime.now()
+    fun sendFormDataToServer(year:Int, month:Int, date:Int, diaryText: String, emoji: String, imageUri: Uri?, title: String, captionText: String) {
+        // year, month, date를 사용해 LocalDate 객체 생성
+        val localDate = LocalDate.of(year, month, date)
+
+        // 현재 시간을 LocalTime으로 가져옴
+        val currentTime = LocalTime.now()
+
+        // 날짜와 시간을 결합하여 LocalDateTime 생성
+        val localDateTime = LocalDateTime.of(localDate, currentTime)
+
+        // 원하는 형식으로 포맷팅
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
-        val formattedDateTime = currentDateTime.format(formatter)
+        val formattedDateTime = localDateTime.format(formatter)
 
         // _ 뒤의 글자만 추출
         val emotionType = emoji.substringAfter("_").substringBefore(".png")
@@ -170,7 +181,8 @@ class WriteActivity : AppCompatActivity() {
             title = title,
             caption = captionText,
             contents = diaryText,
-            emotionType = emotionType
+            emotionType = emotionType,
+            createdAt = formattedDateTime
         )
 
         // diary object를 json으로 만듦
