@@ -43,12 +43,12 @@ class MainActivity : AppCompatActivity() {
 
         diaryApiService = retrofit.create(DiaryApiService::class.java)
 
-
         // SharedPreferences에서 값 읽기
         val defaultValue = sharedPreferences.getInt("default", 0)
 
         // 기본값이 0일 경우 데이터 가져오기, 아니면 캘린더 설정
         if (defaultValue == 0) {
+            setupCalendar()
             fetchDiaryList()
         } else {
             setupCalendar()
