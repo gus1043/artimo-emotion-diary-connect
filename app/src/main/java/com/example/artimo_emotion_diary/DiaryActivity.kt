@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import java.io.File
 
 class DiaryActivity : AppCompatActivity() {
@@ -113,6 +114,7 @@ class DiaryActivity : AppCompatActivity() {
                         .load(imageUriString)
                         .placeholder(R.drawable.blank)
                         .error(R.drawable.logo) // 로딩 실패 시 기본 이미지 설정
+                        .diskCacheStrategy(DiskCacheStrategy.ALL) // 디스크 캐시 사용
                         .into(todayimage)
                 } else {
                     // 로컬 URI 처리
