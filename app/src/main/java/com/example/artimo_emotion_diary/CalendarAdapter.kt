@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.time.LocalDate
 
 class CalendarAdapter(
     private val context: Context,
@@ -23,9 +24,21 @@ class CalendarAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val dateTextView: TextView = itemView.findViewById(R.id.date)
         private val emojiImageView: ImageView = itemView.findViewById(R.id.emoji)
+        private val highlightView: ImageView = itemView.findViewById(R.id.highlight)
 
         fun bind(date: Date) {
             Log.d("CalendarAdapter", "바인딩한 date: ${date.date}, emoji: ${date.emoji}")
+            // 오늘 날짜 확인
+            val today = LocalDate.now()
+            if (date.year == today.year && date.month == today.monthValue && date.date == today.dayOfMonth && date.emoji==null) {
+                // 오늘 날짜일 때 텍스트 색상 변경
+                highlightView.visibility = View.VISIBLE
+                highlightView.setImageResource(R.drawable.highlight)
+            } else {
+                highlightView.visibility = View.GONE
+                dateTextView.setTextColor(context.getColor(R.color.black))  // 기본 색상
+            }
+
             dateTextView.text = if (date.date > 0) date.date.toString() else ""
             loadEmoji(date.emoji)
 

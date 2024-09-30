@@ -16,14 +16,21 @@
         android:autoSizeMinTextSize="10sp"
         android:autoSizeMaxTextSize="14sp"
         android:autoSizeStepGranularity="1sp"
-        android:minWidth="50dp"
-        android:minHeight="60dp"/>
+        android:minWidth="45dp"
+        android:minHeight="50dp"/>
 
+    <ImageView
+        android:id="@+id/highlight"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:scaleType="fitXY"
+        android:contentDescription="하이라이터" />
 
     <ImageView
         android:id="@+id/emoji"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
         android:scaleType="fitXY"
         android:contentDescription="이모지" />
