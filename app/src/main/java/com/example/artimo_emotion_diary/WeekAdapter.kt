@@ -24,9 +24,23 @@ class WeekAdapter(private val daysOfWeek: List<DayOfWeek>) :
 
     override fun onBindViewHolder(holder: WeekViewHolder, position: Int) {
         val dayOfWeek = daysOfWeek[position]
+
+        // 부모의 컨텍스트를 사용하여 화면 크기를 가져옴
+        val displayMetrics = holder.itemView.context.resources.displayMetrics
+        val screenWidth = displayMetrics.widthPixels
+        val itemWidth = screenWidth / 7
+
+        // 아이템 뷰의 크기를 조정
+        val layoutParams = holder.itemView.layoutParams
+        if (layoutParams is RecyclerView.LayoutParams) {
+            layoutParams.width = itemWidth
+            holder.itemView.layoutParams = layoutParams
+        }
+
+        // 요일 이름 설정
         holder.dayNameTextView.text = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.US)
 
-        // sun, sat 색깔 설정
+        // 일요일과 토요일의 텍스트 색상 설정
         when (dayOfWeek) {
             DayOfWeek.SUNDAY -> holder.dayNameTextView.setTextColor(Color.parseColor("#d6674c"))
             DayOfWeek.SATURDAY -> holder.dayNameTextView.setTextColor(Color.parseColor("#618dd3"))

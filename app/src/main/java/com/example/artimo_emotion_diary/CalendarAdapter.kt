@@ -76,8 +76,20 @@ class CalendarAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        // 부모의 너비를 가져와서 1/7로 계산
+        val displayMetrics = context.resources.displayMetrics
+        val screenWidth = displayMetrics.widthPixels
+        val itemWidth = screenWidth / 7
+
+        // 아이템 뷰의 크기를 조정
+        val layoutParams = holder.itemView.layoutParams
+        layoutParams.width = itemWidth
+        holder.itemView.layoutParams = layoutParams
+
+        // 나머지 바인딩 작업
         holder.bind(itemList[position])
     }
+
 
     override fun getItemCount(): Int {
         Log.d("CalendarAdapter", "Item count: ${itemList.size}")
