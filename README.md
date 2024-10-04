@@ -6,12 +6,18 @@
 
 <br/>    
 
+## 관련 저장소  
+[안드로이드TV APP 저장소 이동](https://github.com/kibwa-sosujiki/artimo-smart-frame)
+
+[백엔드 저장소 이동](https://github.com/KimSH39/artimo-server)
+
+
 
  ## Contributors 
 |최지현|김소현|오수연|채기웅|
 |:---:|:---:|:---:|:---:|
 <img src="https://avatars.githubusercontent.com/u/80878955?v=4" width="200px">|<img src="https://avatars.githubusercontent.com/u/63898043?v=4" width="200px">|<img src="https://avatars.githubusercontent.com/u/97380428?v=4" width="200px">|<img src="https://avatars.githubusercontent.com/u/77622897?v=4" width="200px">|
-|개발|디자인, 백엔드|백엔드|백엔드|
+|안드로이드 개발|디자인, 백엔드|백엔드|백엔드|
 |[@gus1043](https://github.com/gus1043)|[@KimSH39](https://github.com/KimSH39)|[@otndus](https://github.com/otndus)|[@dipito](https://github.com/Gi-Woong)|
 
 <br/>     
