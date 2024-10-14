@@ -13,7 +13,6 @@
 
 ## 관련 저장소  
 - [안드로이드TV APP 저장소 이동](https://github.com/kibwa-sosujiki/artimo-smart-frame)
-
 - [백엔드 저장소 이동](https://github.com/KimSH39/artimo-server)
 
 ## 기술 스택
