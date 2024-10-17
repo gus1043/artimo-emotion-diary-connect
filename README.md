@@ -3,7 +3,8 @@
 <br/>    
  ## 아트모(Artmo): 감정을 예술로, 공간을 작품으로!
 ![2](https://github.com/user-attachments/assets/6a74713e-e8c8-49f1-9a3d-70c7a3df236f)
-![18](https://github.com/user-attachments/assets/96b58a61-e8fe-434c-9878-31648db3e669)
+![10](https://github.com/user-attachments/assets/40e8494d-9541-43ab-8634-38ba91b9cd7e)
+
 
 
 ## 프로젝트 소개
